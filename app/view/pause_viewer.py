@@ -3,14 +3,13 @@ from PIL import Image, ImageTk
 import os.path
 
 '''
-エントリー画面
-Start  ゲーム開始
-Exit   ゲーム終了
-Score  スコア表の表示
+ポーズ画面
+Continue  ゲームに戻る
+Exit   タイトルに戻る
 '''
 
 
-class EntryViewer(tk.Frame):
+class PauseViewer(tk.Canvas):
     Width = 800  # 画面横幅
     Height = 600  # 画面縦幅
 
@@ -20,23 +19,22 @@ class EntryViewer(tk.Frame):
         # controller
         self.controller = controller
 
-        # title image
+        # pause title
         script_dir = os.path.dirname(os.path.abspath(__file__))
         self.img_title = Image.open(os.path.join(script_dir, 'static/title.png'))
+        self.img_title = self.img_title.resize((273, 84))
         self.tkimg_title = ImageTk.PhotoImage(self.img_title)
         self.label_tkimg_title = tk.Label(self, image=self.tkimg_title)
 
         # button
-        self.button_start = tk.Button(self, text="Start", command=lambda: None)
-        self.button_exit = tk.Button(self, text="Exit", command=lambda: None)
-        self.button_score = tk.Button(self, text="Score", command=lambda: None)
+        self.button_continue = tk.Button(master, text="Continue", command=lambda: None)
+        self.button_exit = tk.Button(master, text="Exit", command=lambda: None)
 
         # create view
         self.pack()
         self.label_tkimg_title.pack()
-        self.button_start.pack()
+        self.button_continue.pack()
         self.button_exit.pack()
-        self.button_score.pack()
 
     def animate(self):
         pass
