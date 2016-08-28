@@ -10,7 +10,7 @@ Score  スコア表の表示
 '''
 
 
-class EntryViewer(tk.Frame):
+class EntryViewer(tk.Canvas):
     Width = 800  # 画面横幅
     Height = 600  # 画面縦幅
 
@@ -24,19 +24,19 @@ class EntryViewer(tk.Frame):
         script_dir = os.path.dirname(os.path.abspath(__file__))
         self.img_title = Image.open(os.path.join(script_dir, 'static/title.png'))
         self.tkimg_title = ImageTk.PhotoImage(self.img_title)
-        self.label_tkimg_title = tk.Label(self, image=self.tkimg_title)
+        self.label_tkimg_title = tk.Label(master, image=self.tkimg_title)
 
         # button
-        self.button_start = tk.Button(self, text="Start", command=lambda: None)
-        self.button_exit = tk.Button(self, text="Exit", command=lambda: None)
-        self.button_score = tk.Button(self, text="Score", command=lambda: None)
+        self.button_start = tk.Button(master, text="Start", command=lambda: None)
+        self.button_exit = tk.Button(master, text="Exit", command=lambda: None)
+        self.button_score = tk.Button(master, text="Stop", command=lambda: None)
 
         # create view
         self.pack()
         self.label_tkimg_title.pack()
-        self.button_start.pack()
-        self.button_exit.pack()
-        self.button_score.pack()
+        self.button_start.pack(anchor=tk.S, side=tk.BOTTOM)
+        self.button_exit.pack(anchor=tk.S, side=tk.BOTTOM)
+        self.button_score.pack(anchor=tk.S, side=tk.BOTTOM)
 
     def animate(self):
         pass
